@@ -25,7 +25,6 @@ public class FraudTransactionValidator {
                     BigDecimal total = e.getValue().stream().map(Transaction::getPrice).reduce(BigDecimal.valueOf(0), BigDecimal::add);
                     return total.compareTo(threshold) > 0;
                 })
-                //    .map( e -> e.getKey().creditCardHash )
                 .map(e -> e.getKey())
                 .collect(Collectors.toList());
 
