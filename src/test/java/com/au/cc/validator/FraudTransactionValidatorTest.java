@@ -21,20 +21,42 @@ public class FraudTransactionValidatorTest {
 
 
     @Test
-    public void successfulTransactionList() throws Exception {
+    public void successfulTransactionListWithZeroList() throws Exception {
 
         transactions = new ArrayList ();
         resultTransactions = new ArrayList( );
         transactions.add( "10d7ce2f43e35fa57d1bbf8b1e2, 2014-05-29T13:15:54, 10.00" );
         transactions.add( "10d7ce2f43e35fa57d1bbf8b1e2, 2014-05-29T13:15:54, 10.00" );
         transactions.add( "10d7ce2f43e35fa57d1bbf8b1e3, 2014-05-29T13:15:54, 10.00" );
-        resultTransactions.add( "10d7ce2f43e35fa57d1bbf8b1e2" );
+      //  resultTransactions.add( "10d7ce2f43e35fa57d1bbf8b1e2" );
 
         Assert.assertEquals( resultTransactions,FraudTransactionValidator.fraudValidator(
                 transactions,
                 LocalDateTime.parse( "2014-05-29T13:15:54",
                         DateTimeFormatter.ofPattern( DATE_PATTERN ) ),
-                BigDecimal.valueOf( 11.0 ) ) );
+                BigDecimal.valueOf( 21.0 ) ) );
+
+    }
+
+    @Test
+    public void successfulTransactionLis() throws Exception {
+
+        transactions = new ArrayList ();
+        resultTransactions = new ArrayList( );
+        transactions.add( "10d7ce2f43e35fa57d1bbf8b1e2, 2014-05-29T13:15:54, 10.00" );
+        transactions.add( "10d7ce2f43e35fa57d1bbf8b1e4, 2014-05-09T13:15:54, 10.90" );
+        transactions.add( "10d7ce2f43e35fa57d1bbf8b1e3, 2014-05-19T13:15:54, 10.00" );
+        transactions.add( "10d7ce2f43e35fa57d1bbf8b1e3, 2014-05-19T13:15:54, 10.00" );
+        transactions.add( "10d7ce2f43e35fa57d1bbf8b1e5, 2014-05-19T13:15:54, 10.00" );
+        transactions.add( "10d7ce2f43e35fa57d1bbf8b1e6, 2014-05-19T13:15:54, 10.00" );
+        transactions.add( "10d7ce2f43e35fa57d1bbf8b1e7, 2014-05-19T13:15:54, 10.00" );
+         resultTransactions.add( "10d7ce2f43e35fa57d1bbf8b1e3" );
+
+        Assert.assertEquals( resultTransactions,FraudTransactionValidator.fraudValidator(
+                transactions,
+                LocalDateTime.parse( "2014-05-29T13:15:54",
+                        DateTimeFormatter.ofPattern( DATE_PATTERN ) ),
+                BigDecimal.valueOf(     11.0 ) ) );
 
     }
     @Test

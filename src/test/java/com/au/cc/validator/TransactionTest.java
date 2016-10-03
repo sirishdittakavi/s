@@ -20,8 +20,8 @@ public class TransactionTest {
     }
 
     @Test
-    public void getTimestamp() throws Exception {
-        assertEquals( parse("2014-05-02T13:15:54" ,DateTimeFormatter.ofPattern(DATE_PATTERN) ), test.getTimestamp() );
+    public void getLocalDate() throws Exception {
+        assertEquals( parse("2014-05-02T13:15:54" ,DateTimeFormatter.ofPattern(DATE_PATTERN) ).toLocalDate (), test.getLocalDate () );
     }
 
     @Test
@@ -29,9 +29,6 @@ public class TransactionTest {
         assertEquals( new BigDecimal( "10.00" ), test.getPrice() );
     }
 
-    @Test
-    public void getKey() throws Exception {
 
-    }
 
 }
